@@ -24,7 +24,7 @@ const update = async () => {
             const json = await dat.json();
             btc_usd = json["bitcoin"].usd;
 			eth_usd = json["ethereum"].usd;
-            avax_usd = json['kira'].usd;
+            avax_usd = json['kira-network'].usd;
         } catch (err) {
             console.log(err);
         }
