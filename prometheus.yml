@@ -1,0 +1,6 @@
+# add this under your other jobs in prometheus 
+  - job_name: 'custom-feed'
+    static_configs:
+      - targets: ['localhost:9800']
+        labels:
+          alias: 'machine'
