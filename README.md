@@ -23,6 +23,9 @@ Run avax-app.js script to pull these data feeds on port 9800
 run with nohup to keep running after terminal is closed
 `nohup node avax-app.js &` or `nohup node generalized-app.js &` depending on which script you want to use. 
 
+## Run node script on startup
+Automatically start the script on reboot by editing your crontab with `crontab -e` and adding the line `@reboot sh -c 'cd /home/app/directory && pm2 start avax-app.js'` (or `generalized-app.js`)
+
 ## Debugging
 `sudo lsof -i :9800` Find PID of program using port 9800
 `kill -9 pid` Kill via PID
