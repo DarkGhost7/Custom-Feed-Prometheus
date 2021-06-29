@@ -83,7 +83,7 @@ const update = async () => {
                     peerStatus.labels(node.version, 'down').set(0);
                     nodeVersions.push(node.version);
                 }
-                peerStatus.labels(node.version, node.up ? 'up' : 'down').inc();
+                peerStatus.labels(node.version, 'up').inc();
             }
         } catch (err) {
             console.log(err);
