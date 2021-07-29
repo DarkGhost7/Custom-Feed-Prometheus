@@ -33,8 +33,17 @@ const update = async () => {
         } catch (err) {
             console.log(err);
         }
+	    
+	try {
+            const dat = await fetch('https://avascan.info/api/v1/burned-fees');
+            const json = await dat.json();
+            burnSupplyX = json["X"];
+        } catch (err) {
+            console.log(err);
+        }
+
 		
-		try {
+	try {
             const post = {jsonrpc:"2.0", id: 1, method :"avm.getBalance", params :{address:"X-avax1slt2dhfu6a6qezcn5sgtagumq8ag8we75f84sw",assetID: "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z"}} ;
             // might need to use https:// or http:// depending on your set up
             const dat = await fetch ('http://'+ip+':9650/ext/bc/X', { headers: { 'content-type': 'application/json' }, method: 'POST', body: JSON.stringify(post)});
@@ -44,7 +53,7 @@ const update = async () => {
             console.log(err);
         }
 		
-		try {
+	try {
             const post = {jsonrpc: "2.0",method: "eth_blockNumber",params: [],id: 1} ;
             const dat = await fetch ('http://'+ip+':9650/ext/bc/C/rpc', { headers: { 'content-type': 'application/json' }, method: 'POST', body: JSON.stringify(post)});
             const json = await dat.json();
@@ -53,7 +62,7 @@ const update = async () => {
             console.log(err);
         }
 		
-		try {
+	try {
             const post = {jsonrpc:"2.0", id:1, method :"platform.getCurrentSupply", params: {}} ;
             const dat = await fetch ('http://'+ip+':9650/ext/bc/P', { headers: { 'content-type': 'application/json' }, method: 'POST', body: JSON.stringify(post)});
             const json = await dat.json();
@@ -62,7 +71,7 @@ const update = async () => {
             console.log(err);
         }
 		
-		try {
+	try {
             const post = {jsonrpc: "2.0", method: "eth_getBalance",params: ["0x0100000000000000000000000000000000000000","latest"],"id": 1} ;
             const dat = await fetch ('http://'+ip+':9650/ext/bc/C/rpc', { headers: { 'content-type': 'application/json' }, method: 'POST', body: JSON.stringify(post)});
             const json = await dat.json();
@@ -89,7 +98,7 @@ const update = async () => {
             console.log(err);
         }
 		
-		supplyPostBurn = AVAXsupply-burnSupply;
+		supplyPostBurn = AVAXsupply-burnSupply-burnSupplyX;
 		
         prices.set({ pair: "btc_usd" }, btc_usd);
 		prices.set({ pair: "eth_usd" }, eth_usd);
@@ -99,6 +108,7 @@ const update = async () => {
 		misc.set({value: "binanceAVAXsupply"}, binanceAVAX);
 		misc.set({value: "AVAXsupply"}, AVAXsupply);
 		misc.set({value: "burnSupply"}, burnSupply);
+    		misc.set({value: "burnSupplyX"}, burnSupplyX);
 		misc.set({value: "supplyPostBurn"}, supplyPostBurn);
 		misc.set({value: "blockNumber"}, blockNumber);
 		
