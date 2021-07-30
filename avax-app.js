@@ -18,7 +18,7 @@ const misc = new prom.Gauge({
     registers: [registry],
     labelNames: ["value"]
 });
-// add your IP here
+// add your IP here or use `localhost`
 var ip = '127.0.0.1';
 const update = async () => {
     try {
