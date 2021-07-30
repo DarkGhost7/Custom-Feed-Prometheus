@@ -19,7 +19,7 @@ const misc = new prom.Gauge({
     labelNames: ["value"]
 });
 // add your IP here or use `localhost`
-var ip = '127.0.0.1';
+var ip = 'localhost';
 const update = async () => {
     try {
         
